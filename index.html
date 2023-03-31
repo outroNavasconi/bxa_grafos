@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Grafos</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="./css/main.css">
+		<!-- <script defer type="text/javascript" src="./js/script.js"></script> -->
+	</head>
+	
+	<body>
+		<main>
+			<section id="options">
+				<div class="line">
+					<div id="CREATION" class="func"><span>[C] Criar</p></div>
+					<div id="CONNECTION" class="func"><span>[A] Conectar</p></div>
+					<div id="REMOVE" class="func"><span>[R] Remover</p></div>
+					<div id="WEIGTH" class="func"><span>[E] Edição de pesos</p></div>	
+				</div>
+				<div class="line">
+					<div id="ORIENTED" class="func"><span>[O] Conexão orientada</p></div>
+					<div id="FREE" class="func"><span>[F] Livre</p></div>
+					<div id="RESET" class="func"><span>[X] Resetar estado</p></div>
+				</div>
+			</section>
+			
+			<section>
+				<div id="canvasConteiner"></div>
+			</section>
+
+			<section id="algorithms">
+				<div class="line">
+					<div id="BFS" class="func"><span>[L] Busca em largura</p></div>
+					<div id="DFS" class="func"><span>[P] Busca em profundidade</p></div>
+					<div id="ROY" class="func"><span>[Y] Algoritmo de Roy</p></div>
+				</div>
+			</section>
+		</main>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+
+		<script src="./js/graph/node.js"></script>
+		<script src="./js/graph/connection.js"></script>
+
+		<script src="./js/environment/mode.js"></script>
+		<script src="./js/environment/mouse.js"></script>
+		<script src="./js/environment/global.js"></script>
+
+		<script src="./js/manipulations/bfs.js"></script>
+		<script src="./js/manipulations/dfs.js"></script>
+		<script src="./js/manipulations/roy.js"></script>
+
+		<script src="./js/utils/utils.js"></script>
+
+		<script src="./js/main.js"></script>
+	</body>
+</html>

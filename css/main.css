@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Nunito&display=swap");
+
+html, body, h1, span, p, section, div {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;  
+  overflow: hidden;
+  background-color: rgba(52, 53, 65, 1);
+}
+
+main {
+  height: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+canvas {
+  border-radius: 15px;
+}
+
+span {
+  font-weight: 400;
+  font-size: 0.75rem;
+	font-family: 'Nunito', sans-serif; 
+}
+
+#options {
+  margin-bottom: 20px;
+}
+
+#algorithms {
+  margin-top: 14px;
+}
+
+.line {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.func {
+  display: flex;
+  margin: 6px 2px 0px 2px;
+  padding: 5px 10px;
+  border-radius: 30px;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.09);
+}
+
+.selected {
+  background-color: rgba(36, 36, 36, 1)
+}
