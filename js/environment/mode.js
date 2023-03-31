@@ -13,8 +13,6 @@ class Mode {
       global.modeName = this.avaliableModes[keyValue.toUpperCase()].name
       global.clearSelectedElements()
       global.addClassToSelectedElement()
-      // nome do modo
-      console.log(global.modeName)
     }
   }
 

@@ -1,13 +1,57 @@
 class PRIM {
 
   constructor() {
-    this.end = false
+    this.nodes = []
+    this.visited = []
+    this.minimunTree = []
   }
 
   execute(global) {
-    while (!this.end) {
-      
+    this.nodes = [...global.nodes]
+    let node = global.selectedNodes[0]
+    while (this.nodes.length > 0) {
+        const index = this.nodes.indexOf(node)
+        this.visited.push(this.nodes.splice(index, 1)[0])
+        const cons = global.getConnectionsOf(node)
+        const lower = this.getLowerCost(node, cons)
+        if (lower !== null) {
+            let nodeTemp = lower.getOtherNodeOfConnextion(node)
+            node = nodeTemp
+            this.minimunTree.push(lower)
+        } else {
+            for (let i = this.visited.length - 1; i >= 0; i--) {
+                for (let con of global.getConnectionsOf(this.visited[i])) {
+                    if (this.minimunTree.indexOf(con) === -1 && this.visited.indexOf(con.getOtherNodeOfConnextion(this.visited[i])) === -1) {
+                        node = con.getOtherNodeOfConnextion(this.visited[i])
+                        this.minimunTree.push(con)
+                        break
+                    }
+                }
+            }
+        }
     }
+    for (let con of this.minimunTree)
+        con.changePrototype(getValidConnectionPrototype())
+    for (let node of this.visited)
+        node.changePrototype(getValidNodePrototype())
+    console.log(this.minimunTree)
+  }
+
+  getLowerCost(node, connections) {
+    let lower = null
+    let value = 1000000000
+    for (let con of connections) {
+        if ((+con.weigth) < value) {
+            if (this.minimunTree.indexOf(con) === -1) {
+                if (this.visited.indexOf(con.getOtherNodeOfConnextion(node)) === -1 ) {
+                    lower = con
+                    value = (+con.weigth)
+                }
+            }
+        }
+    }
+    console.log(lower)
+    return lower
   }
 }
 

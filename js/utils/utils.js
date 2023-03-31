@@ -5,6 +5,7 @@ function getNodePrototype() {
 		strokeSize: 2,
 		fontAlign: CENTER,
 		fontStrokeSize: 0,
+		fontType: 'Nunito',
 		fontColor: color(0, 0, 0),
 		fontStroke: color('rgba(0, 0, 0, 1)'),
 		nodeColor: color(80, 140, 93),	
@@ -40,11 +41,12 @@ function getInvalidNodePrototype() {
 
 function getConnectionPrototype() {
 	return {
-		fontSize: 12,
+		fontSize: 14,
 		arrowSize: 4,
 		arrowDist: 12,
 		strokeSize: 2,
 		fontAlign: CENTER,
+		fontType: 'Nunito',
 		fontStrokeSize: 0,
 		fontColor: color(0, 0, 0),
 		fontStroke: color('rgba(0, 0, 0, 1)'),
@@ -81,7 +83,8 @@ function getAvaliableModes() {
 		X: { name: 'RESET', obj: getResetModePrototype },
 		L: { name: 'BFS', obj: getBfsModePrototype },
 		P: { name: 'DFS', obj: getDfsModePrototype },
-		Y: { name: 'ROY', obj: getRoyModePrototype }
+		Y: { name: 'ROY', obj: getRoyModePrototype },
+		M: { name: 'PRM', obj: getPrimModePrototype }
 	}
 }
 
@@ -251,6 +254,15 @@ function getRoyModePrototype() {
 	proto.onClick = (global, click) => {
 		if (global.selectedNodes.length === 1)
 			new ROY().execute(global)
+	}
+	return proto
+}
+
+function getPrimModePrototype() {
+	const proto = getModePrototype()
+	proto.onClick = (global, click) => {
+		if (global.selectedNodes.length === 1)
+			new PRIM().execute(global)
 	}
 	return proto
 }

@@ -78,6 +78,7 @@ class Connection {
   drawLegends() {
     const txt = this.weigth !== null ? `${this.id}, ${this.weigth}` : `${this.id}`
     const pos = p5.Vector.lerp(this.start.pos, this.end.pos, 0.5)
+    textFont(this.connectionPrototype.fontType)
 		textAlign(this.connectionPrototype.fontAlign)
 		textSize(this.connectionPrototype.fontSize)
     stroke(this.connectionPrototype.fontStroke)

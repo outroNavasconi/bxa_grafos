@@ -30,6 +30,7 @@ class Node {
 		strokeWeight(this.nodePrototype.fontStrokeSize)
 		stroke(this.nodePrototype.fontStroke)
 		fill(this.nodePrototype.fontColor)
+		textFont(this.nodePrototype.fontType)
 		textSize(this.nodePrototype.fontSize)
 		textAlign(this.nodePrototype.fontAlign)
 		text(this.id, this.pos.x, this.pos.y + 3)

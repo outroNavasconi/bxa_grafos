@@ -68,6 +68,14 @@ class Global {
 		return null
 	}
 
+	getConnectionsOf(node) {
+		const cons = []
+		for (let connection of this.connections) 
+			if (connection.hasNode(node))
+				cons.push(connection)
+		return cons
+	}
+
 	clearSelectedElements() {
 		for (let element of this.elements) {
 			if (element.classList.contains("selected")) {
