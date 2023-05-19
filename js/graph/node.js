@@ -3,6 +3,7 @@ class Node {
 	constructor(id, pos, nodePrototype) {
 		this.id = id
 		this.pos = pos
+		this.info = ''
 		this.nodePrototype = nodePrototype
 	}
 
@@ -34,6 +35,8 @@ class Node {
 		textSize(this.nodePrototype.fontSize)
 		textAlign(this.nodePrototype.fontAlign)
 		text(this.id, this.pos.x, this.pos.y + 3)
+		if (this.info !== '')
+			text(this.info, this.pos.x, this.pos.y + this.nodePrototype.size)
 	}
 }
 		

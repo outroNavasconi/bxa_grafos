@@ -12,15 +12,16 @@
 		<main>
 			<section id="options">
 				<div class="line">
-					<div id="CREATION" class="func"><span>[C] Criar</p></div>
-					<div id="CONNECTION" class="func"><span>[A] Conectar</p></div>
-					<div id="REMOVE" class="func"><span>[R] Remover</p></div>
-					<div id="WEIGTH" class="func"><span>[E] Edição de pesos</p></div>	
+					<div id="CREATION" class="func"><span>[C] Criar</span></div>
+					<div id="CONNECTION" class="func"><span>[A] Conectar</span></div>
+					<div id="REMOVE" class="func"><span>[R] Remover</span></div>
+					<div id="WEIGTH" class="func"><span>[E] Edição de pesos</span></div>	
 				</div>
 				<div class="line">
-					<div id="ORIENTED" class="func"><span>[O] Conexão orientada</p></div>
-					<div id="FREE" class="func"><span>[F] Livre</p></div>
-					<div id="RESET" class="func"><span>[X] Resetar estado</p></div>
+					<div id="ORIENTED" class="func"><span>[O] Conexão orientada</span></div>
+					<div id="FREE" class="func"><span>[F] Livre</span></div>
+					<div id="RESET" class="func"><span>[X] Resetar estado</span></div>
+					<div id="INFO" class="func"><span>[D] Edição do nó</span></div>
 				</div>
 			</section>
 			
@@ -29,11 +30,18 @@
 			</section>
 
 			<section id="algorithms">
+				<!--
 				<div class="line">
-					<div id="BFS" class="func"><span>[L] Largura</p></div>
-					<div id="DFS" class="func"><span>[P] Profundidade</p></div>
-					<div id="ROY" class="func"><span>[Y] Roy</p></div>
-					<div id="PRM" class="func"><span>[M] PRIM</p></div>
+					<div id="BFS" class="func"><span>[L] Largura</span></div>
+					<div id="DFS" class="func"><span>[P] Profundidade</span></div>
+					<div id="ROY" class="func"><span>[Y] Roy</span></div>
+					<div id="PRM" class="func"><span>[M] PRIM</span></div>
+				</div>
+				-->
+				<div class="line">
+					<div id="PLANAR" class="func"><span>[N] É planar?</span></div>
+					<div id="BFS" class="func"><span>[W] Welsh-Powell</span></div>
+					<div id="APATH" class="func"><span>[S] A*</span></div>
 				</div>
 			</section>
 		</main>
@@ -47,10 +55,15 @@
 		<script src="./js/environment/mouse.js"></script>
 		<script src="./js/environment/global.js"></script>
 
+		<script src="./js/heuristics/latlon.js"></script>
+
 		<script src="./js/manipulations/bfs.js"></script>
 		<script src="./js/manipulations/dfs.js"></script>
 		<script src="./js/manipulations/roy.js"></script>
 		<script src="./js/manipulations/prm.js"></script>
+		<script src="./js/manipulations/pla.js"></script>
+		<script src="./js/manipulations/awp.js"></script>
+		<script src="./js/manipulations/ast.js"></script>
 
 		<script src="./js/utils/utils.js"></script>
 

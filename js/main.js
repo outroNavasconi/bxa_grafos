@@ -4,7 +4,7 @@ const global = new Global(document.querySelectorAll(".func"))
 
 function setup() {
 	mode.changeModeOfGlobal(global, 'F')
-	const canvas = createCanvas(400, 400)
+	const canvas = createCanvas(600, 400)
 	canvas.parent(document.getElementById('canvasConteiner'))
 }
 

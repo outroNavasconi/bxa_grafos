@@ -5,7 +5,7 @@ class Global {
 		this.idNode = 0
 		this.lastMode = ''
 		this.modeName = 'FREE'
-		this.weigthValue = ''
+		this.bufferText = ''
 		this.connections = []
 		this.idConnection = 0
 		this.selectedNodes = []
@@ -65,6 +65,13 @@ class Global {
 		for (let connection of this.connections)
 			if (connection.hasNode(nodeA) && connection.hasNode(nodeB))
 				return connection
+		return null
+	}
+
+	getNodeById(id) {
+		for (let node of this.nodes)
+			if (node.id === id)
+				return node
 		return null
 	}
 

@@ -43,7 +43,7 @@ class Connection {
   }
 
   editWeigth(value) {
-    this.weigth = value
+    this.weigth = new Number(value) 
   }
 
   draw() {

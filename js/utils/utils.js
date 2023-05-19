@@ -84,12 +84,17 @@ function getAvaliableModes() {
 		L: { name: 'BFS', obj: getBfsModePrototype },
 		P: { name: 'DFS', obj: getDfsModePrototype },
 		Y: { name: 'ROY', obj: getRoyModePrototype },
-		M: { name: 'PRM', obj: getPrimModePrototype }
+		M: { name: 'PRM', obj: getPrimModePrototype },
+		N: { name: 'PLANAR', obj: getPlanModePrototype },
+		W: { name: 'WELSH-POWELL', obj: getWelshPowellModePrototype },
+		D: { name: 'INFO', obj: getEditNodeInfoModePrototype },
+		S: { name: 'APATH', obj: getAPathfindingModePrototype }
 	}
 }
 
 function getModePrototype() {
 	return {
+		internObj: null,
 		onChange: (global) => {},
 		beforeClick: (global) => {},
 		onClick: (global, click) => {},
@@ -186,7 +191,7 @@ function getEditWeigthModePrototype() {
 	const proto = getModePrototype()
 	proto.onChange = (global) => { 
 		if (global.lastMode !== global.modeName) {
-			global.weigthValue = ''
+			global.bufferText = ''
 			global.selectedConnection = null
 			global.lastMode = global.modeName
 		}
@@ -197,19 +202,54 @@ function getEditWeigthModePrototype() {
 			noStroke()
 			textSize(12)
 			textAlign(LEFT)
-			text("Peso: " + global.weigthValue, 20, 380)
+			text("Peso: " + global.bufferText, 20, 380)
 		}
 	}
 	proto.onKeyPressed = (global, keycode) => {
 		if (global.selectedConnection !== null) {
 			if (keycode === ENTER) {
-				if (global.weigthValue !== '') {
-					global.selectedConnection.editWeigth(global.weigthValue)
+				if (global.bufferText !== '') {
+					global.selectedConnection.editWeigth(global.bufferText)
 					global.selectedConnection = null
-					global.weigthValue = ''
+					global.bufferText = ''
 				}
 			} else {
-				global.weigthValue += String.fromCharCode(keycode)
+				global.bufferText += String.fromCharCode(keycode)
+			}
+		}
+	}
+	return proto
+}
+
+function getEditNodeInfoModePrototype() {
+	const proto = getModePrototype()
+	proto.onChange = (global) => {
+		if (global.lastMode !== global.modeName) {
+			global.bufferText = ''
+			global.selectedNodes = []
+			global.lastMode = global.modeName
+
+		}
+	}
+	proto.onUpdate = (global) => {
+		if (global.selectedNodes.length === 1) {
+			fill(0)
+			noStroke()
+			textSize(12)
+			textAlign(LEFT)
+			text("Info: " + global.bufferText, 20, 380)
+		}
+	}
+	proto.onKeyPressed = (global, keycode) => {
+		if (global.selectedNodes.length === 1) {
+			if (keycode === ENTER) {
+				if (global.bufferText !== '') {
+					global.selectedNodes[0].info = global.bufferText
+					global.selectedNodes = []
+					global.bufferText = ''
+				}
+			} else {
+				global.bufferText += key
 			}
 		}
 	}
@@ -263,6 +303,43 @@ function getPrimModePrototype() {
 	proto.onClick = (global, click) => {
 		if (global.selectedNodes.length === 1)
 			new PRIM().execute(global)
+	}
+	return proto
+}
+
+function getPlanModePrototype() {
+	const proto = getModePrototype()
+	proto.onChange = (global) => {
+		proto.internObj = new PLAN()
+		proto.internObj.execute(global)
+	},
+	proto.onUpdate = (global) => {
+		fill(0)
+		noStroke()
+		textSize(12)
+		textAlign(LEFT)
+		text(proto.internObj.message, 20, 380)
+	}
+	return proto
+}
+
+function getWelshPowellModePrototype() {
+	const proto = getModePrototype()
+	proto.onChange = (global) => {
+		new WELSHPOWELL().execute(global)
+	}
+	return proto
+}
+
+function getAPathfindingModePrototype() {
+	const proto = getModePrototype() 
+	proto.onClick = (global, click) => {
+		if (global.selectedNodes.length === 2)
+			new APATHFINDING(global.selectedNodes[0], global.selectedNodes[1]).with(new LatLon()).execute(global)
+	}
+	proto.afterClick = (global) => {
+		if (global.selectedNodes === 2)
+			global.selectedNodes = []
 	}
 	return proto
 }
