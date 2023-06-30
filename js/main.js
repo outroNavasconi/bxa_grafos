@@ -1,37 +1,59 @@
-const mouse = new Mouse()
-const mode = new Mode(getAvaliableModes())
-const global = new Global(document.querySelectorAll(".func"))
+import Graph from './graph/graph.js'
+import Mouse from './inputs/mouse.js'
+import Keyboard from './inputs/keyboard.js'
+import Events from './environment/events.js'
+import Program from './environment/program.js'
+import * as visual from './environment/visual.js'
 
-function setup() {
-	mode.changeModeOfGlobal(global, 'F')
-	const canvas = createCanvas(600, 400)
-	canvas.parent(document.getElementById('canvasConteiner'))
-}
+import { getSimpleGraph } from '../data/mocks.js'
 
-function draw() {
-	background(200)
-	mode.onUpdate(global)
-	global.drawAllObjects()
-}
+new p5(p5 => {
+  let canvas = null
+  let graph = null
+  const events = new Events()
+  const program = new Program(new Mouse(p5), new Keyboard())
 
-function mousePressed() {
-	mouse.registerMouseClick()
-	mouse.registerInGlobalIfWasOverNode(global)
-  mouse.registerInGlobalIfWasOverConnection(global)
-	mode.onClick(global, mouse.click)
-	mode.afterClick(global)
-}
+  p5.setup = () => {
+    canvas = p5.createCanvas(p5.windowWidth, p5.windowHeight)
+    canvas.style('z-index: -1')
+    canvas.position(0, 0)
+    program.keyboard.saveKeyCode(76)
+    program.changeMode()
+    graph = getSimpleGraph()
+  }
 
-function keyPressed() {
-	mode.changeModeOfGlobal(global, key)
-	mode.onKeyPressed(global, keyCode)
-	mode.onChange(global)
-}
+  p5.draw = () => {
+    p5.background(p5.color('#D9D9D9'))
+    visual.drawBoard(p5)
+    visual.drawMousePosition(p5)
+    events.process()
+    graph.draw(p5)
+  }
 
-function mouseDragged() {
-	mode.onMouseDragged(global)
-}
+  p5.windowResized = () => {
+    p5.resizeCanvas(p5.windowWidth, p5.windowHeight)
+  }
 
-function mouseReleased() {
-	mode.onMouseReleased(global)
-}
+  p5.mousePressed = () => {
+    program.mouse.save()
+    program.saveSelectedObjects(graph)
+    program.modeObj.onMousePressed(program, graph, events)
+  }
+
+  p5.mouseDragged = () => {
+    program.mouse.save()
+    program.modeObj.onMouseDragged(program, graph, events)
+  }
+
+  p5.mouseReleased = () => {
+    program.modeObj.onMouseReleased(program, graph, events)
+  }
+
+  p5.keyPressed = () => {
+    program.keyboard.saveKeyCode(p5.keyCode)
+    if (!program.lockedForChanges) {
+      program.changeMode()
+      program.modeObj.onModeChange(program, graph, events)
+    }
+  }
+}, document.getElementById('canvasBox'))

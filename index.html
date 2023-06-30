@@ -1,72 +1,36 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Grafos</title>
+<html lang="pt-br">
+  <head>
+    <title>Grafos</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="./css/main.css">
-		<!-- <script defer type="text/javascript" src="./js/script.js"></script> -->
-	</head>
-	
-	<body>
-		<main>
-			<section id="options">
-				<div class="line">
-					<div id="CREATION" class="func"><span>[C] Criar</span></div>
-					<div id="CONNECTION" class="func"><span>[A] Conectar</span></div>
-					<div id="REMOVE" class="func"><span>[R] Remover</span></div>
-					<div id="WEIGTH" class="func"><span>[E] Edição de pesos</span></div>	
-				</div>
-				<div class="line">
-					<div id="ORIENTED" class="func"><span>[O] Conexão orientada</span></div>
-					<div id="FREE" class="func"><span>[F] Livre</span></div>
-					<div id="RESET" class="func"><span>[X] Resetar estado</span></div>
-					<div id="INFO" class="func"><span>[D] Edição do nó</span></div>
-				</div>
-			</section>
-			
-			<section>
-				<div id="canvasConteiner"></div>
-			</section>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <script defer type="module" src="./lib/p5.min.js"></script>
+    <script defer type="module" src="./js/main.js"></script>
+  </head>
 
-			<section id="algorithms">
-				<!--
-				<div class="line">
-					<div id="BFS" class="func"><span>[L] Largura</span></div>
-					<div id="DFS" class="func"><span>[P] Profundidade</span></div>
-					<div id="ROY" class="func"><span>[Y] Roy</span></div>
-					<div id="PRM" class="func"><span>[M] PRIM</span></div>
-				</div>
-				-->
-				<div class="line">
-					<div id="PLANAR" class="func"><span>[N] É planar?</span></div>
-					<div id="BFS" class="func"><span>[W] Welsh-Powell</span></div>
-					<div id="APATH" class="func"><span>[S] A*</span></div>
-				</div>
-			</section>
-		</main>
-		
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
-
-		<script src="./js/graph/node.js"></script>
-		<script src="./js/graph/connection.js"></script>
-
-		<script src="./js/environment/mode.js"></script>
-		<script src="./js/environment/mouse.js"></script>
-		<script src="./js/environment/global.js"></script>
-
-		<script src="./js/heuristics/latlon.js"></script>
-
-		<script src="./js/manipulations/bfs.js"></script>
-		<script src="./js/manipulations/dfs.js"></script>
-		<script src="./js/manipulations/roy.js"></script>
-		<script src="./js/manipulations/prm.js"></script>
-		<script src="./js/manipulations/pla.js"></script>
-		<script src="./js/manipulations/awp.js"></script>
-		<script src="./js/manipulations/ast.js"></script>
-
-		<script src="./js/utils/utils.js"></script>
-
-		<script src="./js/main.js"></script>
-	</body>
+  <body>
+    <main id="canvasBox">
+      <section>
+        <menu>
+          <li id="L">[L] Livre</li>
+          <li id="C">[C] Criar</li>
+          <li id="R">[R] Remover</li>
+          <li id="N">[N] Conectar</li>
+          <li id="S">[S] Soft Reset</li>
+        </menu>
+        <menu>
+          <li id="G">[G] Algoritmo Genético</li>
+        </menu>
+      </section>
+      <!-- <section id="panel">
+        <div id="panelBox" class="open">
+          <div id="content">
+            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+<label for="vehicle1"> I have a bike</label><br>
+          </div>
+        </div>
+      </section> -->
+    </main>
+  </body>
 </html>

@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&family=Nunito&display=swap");
+
+html, body, main, canvas, header, section, menu, li {
+  margin: 0;
+  padding: 0;
+  display: block;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+html, body, main {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+section {
+  padding-top: 15px;
+}
+
+section menu:last-child {
+  margin-top: 5px;
+}
+
+menu {
+  display: flex;
+  justify-content: center;
+}
+
+menu li:not(li:first-child) {
+  margin-left: 10px;
+}
+
+li {
+  color: #fff;
+  padding: 2px 8px;
+  font-size: 0.9rem;
+  position: relative;
+  border-radius: 15px;
+  background-color: #72808C;
+  transition: all 0.5s ease-out;
+	font-family: 'Nunito', sans-serif;
+}
+
+li.selected {
+  top: -2px;
+  background-color: #243b45;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+section#panel {
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  position: absolute;
+}
+
+div#panelBox {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  border-radius: 50%;
+  background-color: rebeccapurple;
+}
+
+div#panelBox .open {
+  width: auto;
+  height: auto;
+  border-radius: 15px;
+}
+
+div#content {
+  
+}
